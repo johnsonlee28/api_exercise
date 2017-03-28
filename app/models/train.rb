@@ -1,4 +1,5 @@
 class Train < ApplicationRecord
+  mount_uploader :train_logo, TrainLogoUploader
   validates_presence_of :number
   has_many :reservations
 
@@ -16,6 +17,6 @@ class Train < ApplicationRecord
   def available_seats
     # 所有 SEATS 扣掉已经订位的资料
     return SEATS - self.reservations.pluck(:seat_number)
-    
+
   end
 end
